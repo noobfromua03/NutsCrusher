@@ -6,7 +6,7 @@ public class TouchController
 {
     private InputManager input = new();
 
-    private const float OVERLAP_RADIUS = 1f;
+    private const float OVERLAP_RADIUS = 0.2f;
 
     public Action BreakStreak;
 
@@ -34,4 +34,6 @@ public class TouchController
         }
         return null;
     }
+
+    
 }
