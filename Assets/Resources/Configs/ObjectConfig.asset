@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6146114a914ca41b2865e273c60404, type: 3}
+  m_Name: ObjectConfig
+  m_EditorClassIdentifier: 
+  <ThrowObjectData>k__BackingField:
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 1
+    <Image>k__BackingField: {fileID: 21300000, guid: e65cda2585fd7e243bc298196bd9f360, type: 3}
+    <AudioType>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 1
+    <Image>k__BackingField: {fileID: 21300000, guid: a660dcce759420f46a64b03b6b221a27, type: 3}
+    <AudioType>k__BackingField: 1
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 2
+    <Image>k__BackingField: {fileID: 21300000, guid: 1c24ae3d41fc9114aa348138498da530, type: 3}
+    <AudioType>k__BackingField: 2
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 2
+    <Image>k__BackingField: {fileID: 21300000, guid: 53127c0701dc2b84fab05c6152a8cd47, type: 3}
+    <AudioType>k__BackingField: 3
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 3
+    <Image>k__BackingField: {fileID: 21300000, guid: a6582c7c88028494fbcf64d3562c17b4, type: 3}
+    <AudioType>k__BackingField: 4
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 3
+    <Image>k__BackingField: {fileID: 21300000, guid: 578b5c356fa696a488418ae8168253df, type: 3}
+    <AudioType>k__BackingField: 5
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 4
+    <Image>k__BackingField: {fileID: 21300000, guid: 68fc5bcb1ae1abe41bd4ac7d3e38a056, type: 3}
+    <AudioType>k__BackingField: 6
+  - <Type>k__BackingField: 0
+    <Taps>k__BackingField: 4
+    <Image>k__BackingField: {fileID: 21300000, guid: 0b62587ac94d1cc47ae0c69d267e655a, type: 3}
+    <AudioType>k__BackingField: 7
+  - <Type>k__BackingField: 1
+    <Taps>k__BackingField: 1
+    <Image>k__BackingField: {fileID: 21300000, guid: 4560f1e92be6a64439fcc4d262352950, type: 3}
+    <AudioType>k__BackingField: 9
+  - <Type>k__BackingField: 2
+    <Taps>k__BackingField: 1
+    <Image>k__BackingField: {fileID: 21300000, guid: 85ec5e76c3114714187ab4de543abb95, type: 3}
+    <AudioType>k__BackingField: 10
+  - <Type>k__BackingField: 3
+    <Taps>k__BackingField: 1
+    <Image>k__BackingField: {fileID: 21300000, guid: b92529facbf42954085ef7a7e63e44cc, type: 3}
+    <AudioType>k__BackingField: 8
+  ThrowObjectPrefab: {fileID: 4936169532280452026, guid: 8fd5d3941ac6635488dec66d09983699, type: 3}
