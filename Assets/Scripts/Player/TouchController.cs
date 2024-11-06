@@ -9,6 +9,7 @@ public class TouchController
     private const float OVERLAP_RADIUS = 0.2f;
 
     public Action BreakStreak;
+    public Action<Vector2> EmptyTap;
 
     public void TouchUpdate()
     {
@@ -17,7 +18,10 @@ public class TouchController
             var currentObjectData = TouchOverlap();
             currentObjectData?.OnTapHandler();
             if (currentObjectData == null)
+            {
                 BreakStreak?.Invoke();
+                EmptyTap?.Invoke(input.CurrentTouch);
+            }
             input.ClearTouchPosition();
         }
     }

@@ -5,14 +5,18 @@ using UnityEngine;
 public class ScoreAnimation : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
 
     private int currentValue = 0;
     private int targetValue = 0;
     private float timer = 0f;
     private float animationDuration = 0.3f;
+    private float bestScore = 0;
     private bool isAnimating = false;
-
     private Vector3 original = new Vector3(1f, 1f, 1f);
+
+    public string GetScore()
+        => scoreText.text;
 
     public void UpdateScore(int score)
     {
@@ -36,6 +40,9 @@ public class ScoreAnimation : MonoBehaviour
             int value = Mathf.FloorToInt(Mathf.Lerp(currentValue, targetValue, progress));
 
             scoreText.text = value.ToString();
+            if (bestScore <= targetValue)
+                bestScoreText.text = "Best: " + value.ToString();
+
             ScaleAnimation(progress);
             if (progress >= 1f)
             {
@@ -56,6 +63,9 @@ public class ScoreAnimation : MonoBehaviour
             scale.y = Mathf.Lerp(original.y * 1.5f, original.y, progress);
 
         scoreText.transform.localScale = scale;
+
+        if (bestScore <= targetValue)
+            bestScoreText.transform.localScale = scale;
 
     }
 }
