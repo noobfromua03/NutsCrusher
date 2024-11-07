@@ -35,7 +35,9 @@ public enum AudioType
     CrashingNut = 11,
     Music = 12,
     EmptyTap = 13,
-    Button = 14
+    Button = 14,
+    GameOver = 15,
+    NewRecord = 16
 }
 
 public enum AudioSubType

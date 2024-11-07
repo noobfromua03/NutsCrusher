@@ -127,6 +127,7 @@ MonoBehaviour:
   sprite: {fileID: 432542836026052090}
   circleCollider: {fileID: 4236247643011533962}
   particles: {fileID: 7943437832583527434}
+  boomPrefab: {fileID: 4914716930404006884, guid: aed12c224fbc8704d8eaa07a52e88f44, type: 3}
 --- !u!1 &5913158102439584926
 GameObject:
   m_ObjectHideFlags: 0

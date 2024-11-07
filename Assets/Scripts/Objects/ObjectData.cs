@@ -10,6 +10,7 @@ public class ObjectData : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private ParticleSystem particles;
+    [SerializeField] private GameObject boomPrefab;
 
     public static Action RemoveLife;
     public static Action<int> AddScore;
@@ -92,6 +93,7 @@ public class ObjectData : MonoBehaviour
                 RemoveLife?.Invoke();
                 break;
             case ObjectType.Bomb:
+                Instantiate(boomPrefab, transform);
                 GameOver?.Invoke();
                 break;
             case ObjectType.GoldenNut:

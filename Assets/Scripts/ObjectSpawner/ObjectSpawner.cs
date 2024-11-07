@@ -8,6 +8,7 @@ public class ObjectSpawner
     private ObjectPool objectPool = new();
     private GameObject objectPrefab;
     private Transform container;
+    private bool StopSpawning;
     private const int MAX_SPAWN_IN_ONE_WAVE= 3;
 
     public Action DestroyActiveNuts;
@@ -83,7 +84,7 @@ public class ObjectSpawner
 
     public IEnumerator SpawnObjectsCoroutine()
     {
-        while (true)
+        while (StopSpawning == false)
         {
             yield return new WaitForSeconds(Random.Range(2f, 3f));
             SpawnHandler();
@@ -94,10 +95,13 @@ public class ObjectSpawner
     {
         DestroyActiveNuts += objectPool.CrashAllActiveNuts;
 
-        while (true)
+        while (StopSpawning == false)
         {
             yield return new WaitForSeconds(Random.Range(0.5f, 2f));
             MenuSpawnHandler();
         }
     }
+
+    public void StopSpawn()
+        => StopSpawning = true;
 }

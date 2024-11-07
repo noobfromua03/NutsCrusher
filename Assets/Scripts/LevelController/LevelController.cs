@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] private DisableZone disableZone;
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private ParticleSystem newRecordParticle;
 
     private void Awake()
     {
@@ -73,6 +74,7 @@ public class LevelController : MonoBehaviour
     {
         particle.gameObject.transform.position = pos;
         particle.Play();
+        AudioManager.Instance.PlayAudioByType(AudioType.EmptyTap, AudioSubType.Sound);
     }
 
     public void StreakAnimation(int streak)
@@ -104,10 +106,18 @@ public class LevelController : MonoBehaviour
     {
         if (VignetteRoutine != null)
             StopCoroutine(VignetteRoutine);
-
+        objectSpawner.StopSpawn();
         VignetteRoutine = StartCoroutine(VignetteController.Instance.VignetteAnimation(1, 0.5f));
         Unsubscribe();
-        playerData.ChangeBestScore();
+
+        if(playerData.ChangeBestScore())
+        {
+            newRecordParticle.Play();
+            AudioManager.Instance.PlayAudioByType(AudioType.NewRecord, AudioSubType.Sound);
+        }
+        else
+            AudioManager.Instance.PlayAudioByType(AudioType.GameOver, AudioSubType.Sound);
+
         hud.OnGameOver();
     }
 }

@@ -19,12 +19,13 @@ public class HUD : MonoBehaviour
     public void OnGameOver()
     {
         endGamePanel.SetActive(true);
-        sessionScore.text = "Score:" + score.GetScore();
+        sessionScore.text = score.GetScore();
         TopBar.gameObject.SetActive(false);
     }
 
     public void RestartBtn()
     {
+        AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
         restart?.Invoke();
         VignetteController.Instance.Reload();
         GameManager.Instance.CreateLevelController();
@@ -32,7 +33,10 @@ public class HUD : MonoBehaviour
     }
 
     public void ReturnToMenuBtn()
-        => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    {
+        AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void DestroySelf()
         => Destroy(gameObject);

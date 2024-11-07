@@ -13,11 +13,6 @@ public class MainMenu : MonoBehaviour
     public Action<float, float> MoveBackground;
     public Action DestroyAllNuts;
 
-    private void Start()
-    {
-
-    }
-
     private void OnEnable()
     {
         startBtn.gameObject.GetComponent<Image>().fillAmount = 1;
@@ -25,11 +20,13 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickStartBtn()
     {
+        AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
         StartCoroutine(StartBtnAnimation());
     }
 
     public void OnClickSettingsBtn()
     {
+        AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
         settingsPanel.SetActive(true);
     }
 

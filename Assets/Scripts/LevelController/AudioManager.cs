@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayAudioByType(AudioType.Music, AudioSubType.Music);
+        PlayAudioByType(AudioType.Music, AudioSubType.Music);
         ChangeMusicVolume();
         ChangeSoundVolume();
     }

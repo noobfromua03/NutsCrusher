@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 #if UNITY_EDITOR
-        //PlayerPrefs.SetInt("BestScore", 1); // delete this
+        PlayerPrefs.SetInt("BestScore", 1);
 #endif
         mainMenu.MoveBackground += menuController.MovingBackgroundAtStartGame;
     }

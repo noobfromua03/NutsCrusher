@@ -24,6 +24,7 @@ public class SettingsPanel : MonoBehaviour
 
     public void OnClickApplyBtn()
     {
+        AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
         PlayerPrefs.SetFloat("SoundVolume", soundVolume.value);
         gameObject.SetActive(false);

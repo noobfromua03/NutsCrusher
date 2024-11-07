@@ -22,7 +22,8 @@ public class ScoreAnimation : MonoBehaviour
     }
 
     public string GetScore()
-        => scoreText.text;
+        => bestScore < targetValue ? "New record! \n" + scoreText.text : "Score: " + scoreText.text;
+
 
     public void UpdateScore(int score)
     {
