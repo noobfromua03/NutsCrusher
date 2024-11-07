@@ -6,6 +6,7 @@ public class LevelController : MonoBehaviour
     private ObjectSpawner objectSpawner = new();
     private PlayerData playerData = new();
     private HUD hud;
+    private Coroutine VignetteRoutine;
 
     [SerializeField] private DisableZone disableZone;
     [SerializeField] private ParticleSystem particle;
@@ -42,6 +43,8 @@ public class LevelController : MonoBehaviour
         playerData.GameOver += GameOver;
         playerData.UpdateLifes += hud.Lifes.UpdateLifes;
         playerData.UpdateScore += hud.Score.UpdateScore;
+        playerData.StreakAnimation += StreakAnimation;
+        playerData.BreakStreakAnimation += BreakStreakAnimation;
 
         hud.restart += Restart;
     }
@@ -60,6 +63,8 @@ public class LevelController : MonoBehaviour
         playerData.GameOver -= GameOver;
         playerData.UpdateLifes -= hud.Lifes.UpdateLifes;
         playerData.UpdateScore -= hud.Score.UpdateScore;
+        playerData.StreakAnimation -= StreakAnimation;
+        playerData.BreakStreakAnimation -= BreakStreakAnimation;
 
         hud.restart -= Restart;
     }
@@ -70,16 +75,39 @@ public class LevelController : MonoBehaviour
         particle.Play();
     }
 
+    public void StreakAnimation(int streak)
+    {
+        if (VignetteRoutine != null)
+            StopCoroutine(VignetteRoutine);
+
+        if (streak >= 15)
+            VignetteRoutine = StartCoroutine(VignetteController.Instance.VignetteAnimation(0, 0.7f));
+        else if (streak >= 5)
+            VignetteRoutine = StartCoroutine(VignetteController.Instance.VignetteAnimation(0, 0.3f));
+    }
+
+    public void BreakStreakAnimation()
+    {
+        if (VignetteRoutine != null)
+            StopCoroutine(VignetteRoutine);
+        VignetteRoutine = StartCoroutine(VignetteController.Instance.VignetteAnimation(0, 0));
+    }
+
+
     private void Restart()
     {
         Unsubscribe();
-        Destroy(gameObject);
+        playerData.ChangeBestScore();
     }
 
     private void GameOver()
     {
+        if (VignetteRoutine != null)
+            StopCoroutine(VignetteRoutine);
+
+        VignetteRoutine = StartCoroutine(VignetteController.Instance.VignetteAnimation(1, 0.5f));
         Unsubscribe();
+        playerData.ChangeBestScore();
         hud.OnGameOver();
-        Destroy(gameObject);
     }
 }

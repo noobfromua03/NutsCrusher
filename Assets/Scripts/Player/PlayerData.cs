@@ -1,4 +1,6 @@
 ﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class PlayerData
 {
@@ -9,13 +11,14 @@ public class PlayerData
     public Action GameOver;
     public Action UpdateLifes;
     public Action<int> UpdateScore;
+    public Action<int> StreakAnimation;
+    public Action BreakStreakAnimation;
 
     public void RemoveLife()
     {
-        UpdateLifes?.Invoke();
-
         Lifes -= 1;
         BreakStreak();
+        UpdateLifes?.Invoke();
 
         if (Lifes <= 0)
             GameOver?.Invoke();
@@ -31,9 +34,24 @@ public class PlayerData
         Score += value;
         Streak++;
         UpdateScore?.Invoke(Score);
+
+        if (Streak >= 5)
+            StreakAnimation?.Invoke(Streak);
     }
 
     public void BreakStreak()
-        => Streak = 0;
+    {
+        Streak = 0;
+        BreakStreakAnimation?.Invoke();
+    }
 
+    public bool ChangeBestScore()
+    {
+        if (PlayerPrefs.GetInt("BestScore") < Score)
+        {
+            PlayerPrefs.SetInt("BestScore", Score);
+            return true;
+        }
+        return false;
+    }
 }

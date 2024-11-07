@@ -6,7 +6,8 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    private static AudioManager instance;
+    public static AudioManager Instance { get => instance; }
 
     [SerializeField] private AudioMixer audioMixer;
 
@@ -19,14 +20,14 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()
     {
         //PlayAudioByType(AudioType.Music, AudioSubType.Music);
-        //ChangeMusicVolume();
-        //ChangeSoundVolume();
+        ChangeMusicVolume();
+        ChangeSoundVolume();
     }
 
     public AudioSource PlayAudioByType(AudioType type, AudioSubType subType)
@@ -100,19 +101,20 @@ public class AudioManager : MonoBehaviour
         audioSources.Clear();
     }
 
-    /*public void ChangeSoundVolume()
+    public void ChangeSoundVolume()
     {
-        if (Progress.Options.IsSoundOn)
-            audioMixer.SetFloat("SoundVolume", SOUND_VOLUME);
+        
+        if (PlayerPrefs.HasKey("SoundVolume"))
+            audioMixer.SetFloat("SoundVolume", PlayerPrefs.GetFloat("SoundVolume"));
         else
-            audioMixer.SetFloat("SoundVolume", -80f);
+            audioMixer.SetFloat("SoundVolume", -30f);
     }
 
     public void ChangeMusicVolume()
     {
-        if (Progress.Options.IsMusicOn)
-            audioMixer.SetFloat("MusicVolume", MUSIC_VOLUME);
+        if (PlayerPrefs.HasKey("MusicVolume"))
+            audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
         else
-            audioMixer.SetFloat("MusicVolume", -80f);
-    }*/
+            audioMixer.SetFloat("MusicVolume", -30f);
+    }
 }

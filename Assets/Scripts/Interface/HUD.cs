@@ -9,6 +9,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private ScoreAnimation score;
     [SerializeField] private LifeAnimation lifes;
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject TopBar;
     [SerializeField] private TextMeshProUGUI sessionScore;
 
     public Action restart;
@@ -19,13 +20,15 @@ public class HUD : MonoBehaviour
     {
         endGamePanel.SetActive(true);
         sessionScore.text = "Score:" + score.GetScore();
+        TopBar.gameObject.SetActive(false);
     }
 
     public void RestartBtn()
     {
         restart?.Invoke();
-        Destroy(gameObject);
+        VignetteController.Instance.Reload();
         GameManager.Instance.CreateLevelController();
+        Destroy(gameObject);
     }
 
     public void ReturnToMenuBtn()

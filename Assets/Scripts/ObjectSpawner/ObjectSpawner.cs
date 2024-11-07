@@ -8,6 +8,7 @@ public class ObjectSpawner
     private ObjectPool objectPool = new();
     private GameObject objectPrefab;
     private Transform container;
+    private const int MAX_SPAWN_IN_ONE_WAVE= 3;
 
     public Action DestroyActiveNuts;
     public void Initialize(Transform container)
@@ -37,7 +38,7 @@ public class ObjectSpawner
 
     private void SpawnHandler()
     {
-        for (int i = 0; i < Random.Range(0f, 4f); i++)
+        for (int i = 0; i < Random.Range(0f, MAX_SPAWN_IN_ONE_WAVE); i++)
         {
             var type = ObjectConfig.Instance.GetRandomType();
             switch (type)

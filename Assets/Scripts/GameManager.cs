@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,10 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private MenuController menuController;
 
+    private LevelController levelController;
+
     private void Awake()
     {
         instance = this;
-
+#if UNITY_EDITOR
+        //PlayerPrefs.SetInt("BestScore", 1); // delete this
+#endif
         mainMenu.MoveBackground += menuController.MovingBackgroundAtStartGame;
     }
 
@@ -28,8 +31,10 @@ public class GameManager : MonoBehaviour
 
     public void CreateLevelController()
     {
-        var levelController = Instantiate(prefabLevelController);
-        levelController.name = "LevelController";
+        if(levelController != null)
+            Destroy(levelController.gameObject);
+        levelController = Instantiate(prefabLevelController).GetComponent<LevelController>();
+        levelController.gameObject.name = "LevelController";
     }
 
     public static Transform CreateContainer(string name, Transform transform)

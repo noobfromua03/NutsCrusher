@@ -10,10 +10,16 @@ public class ScoreAnimation : MonoBehaviour
     private int currentValue = 0;
     private int targetValue = 0;
     private float timer = 0f;
-    private float animationDuration = 0.3f;
-    private float bestScore = 0;
+    private float animationDuration = 0.2f;
+    private int bestScore = 0;
     private bool isAnimating = false;
     private Vector3 original = new Vector3(1f, 1f, 1f);
+
+    private void Start()
+    {
+        bestScore = PlayerPrefs.GetInt("BestScore");
+        bestScoreText.text = "Best: " + bestScore;
+    }
 
     public string GetScore()
         => scoreText.text;
@@ -40,7 +46,7 @@ public class ScoreAnimation : MonoBehaviour
             int value = Mathf.FloorToInt(Mathf.Lerp(currentValue, targetValue, progress));
 
             scoreText.text = value.ToString();
-            if (bestScore <= targetValue)
+            if (bestScore < targetValue)
                 bestScoreText.text = "Best: " + value.ToString();
 
             ScaleAnimation(progress);
@@ -49,7 +55,6 @@ public class ScoreAnimation : MonoBehaviour
                 currentValue = targetValue;
                 isAnimating = false;
             }
-
         }
     }
 

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button startBtn;
+    [SerializeField] private Button settingsBtn;
+    [SerializeField] private GameObject settingsPanel;
 
-    public float Timer = 0;
+    private float Timer = 0;
     public Action<float, float> MoveBackground;
     public Action DestroyAllNuts;
 
@@ -21,9 +23,14 @@ public class MainMenu : MonoBehaviour
         startBtn.gameObject.GetComponent<Image>().fillAmount = 1;
     }
 
-    public void OnClickStart()
+    public void OnClickStartBtn()
     {
         StartCoroutine(StartBtnAnimation());
+    }
+
+    public void OnClickSettingsBtn()
+    {
+        settingsPanel.SetActive(true);
     }
 
     private IEnumerator StartBtnAnimation()
