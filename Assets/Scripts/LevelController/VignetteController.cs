@@ -25,9 +25,6 @@ public class VignetteController : MonoBehaviour
         volume.profile.TryGet<Vignette>(out vignette);
     }
 
-    public void Reload()
-        => vignette.intensity.value = 0;
-
     public IEnumerator VignetteAnimation(int colorIndex, float targetIntensity)
     {
         timer = 0;

@@ -47,7 +47,7 @@ public class LevelController : MonoBehaviour
         playerData.StreakAnimation += StreakAnimation;
         playerData.BreakStreakAnimation += BreakStreakAnimation;
 
-        hud.restart += Restart;
+        hud.Restart += Restart;
     }
 
     private void Unsubscribe()
@@ -67,7 +67,7 @@ public class LevelController : MonoBehaviour
         playerData.StreakAnimation -= StreakAnimation;
         playerData.BreakStreakAnimation -= BreakStreakAnimation;
 
-        hud.restart -= Restart;
+        hud.Restart -= Restart;
     }
 
     private void EmptyTap(Vector2 pos)

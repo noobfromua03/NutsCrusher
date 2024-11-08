@@ -12,7 +12,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameObject TopBar;
     [SerializeField] private TextMeshProUGUI sessionScore;
 
-    public Action restart;
+    public Action Restart;
     public ScoreAnimation Score { get => score; }
     public LifeAnimation Lifes { get => lifes; }
 
@@ -26,8 +26,7 @@ public class HUD : MonoBehaviour
     public void RestartBtn()
     {
         AudioManager.Instance.PlayAudioByType(AudioType.Button, AudioSubType.Sound);
-        restart?.Invoke();
-        VignetteController.Instance.Reload();
+        Restart?.Invoke();
         GameManager.Instance.CreateLevelController();
         Destroy(gameObject);
     }
