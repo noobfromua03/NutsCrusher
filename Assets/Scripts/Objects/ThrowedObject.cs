@@ -18,6 +18,7 @@ public class ThrowedObject : MonoBehaviour
     {
         halfScreenSize = Camera.main.orthographicSize * Camera.main.aspect;
     }
+    
     private void OnEnable()
     {
         transform.position = SetStartPosition();
@@ -30,23 +31,36 @@ public class ThrowedObject : MonoBehaviour
     {
         Rotate();
     }
-    public void ForceUp()
+    private void ForceUp()
         => rb.AddForce(throwVector, ForceMode2D.Impulse);
 
-    public Vector2 SetThrowVector()
-        => new(Random.Range(-baseSideForce + transform.position.x / -2.5f, baseSideForce - transform.position.x / 2.5f), 
+    private Vector2 SetThrowVector()
+        => new(Random.Range(-baseSideForce + transform.position.x / -2.5f, baseSideForce - transform.position.x / 2.5f),
             Random.Range(baseForcePower.x, baseForcePower.y));
 
-    public void Rotate()
+    private void Rotate()
         => transform.Rotate(Vector3.forward, rotatePower);
 
-    public float SetPotatePower()
-        => Random.value > 0.5f ? Random.Range(baseRotatePower.x, baseRotatePower.y) : 
+    private float SetPotatePower()
+        => Random.value > 0.5f ? Random.Range(baseRotatePower.x, baseRotatePower.y) :
         Random.Range(baseRotatePower.x, baseRotatePower.y) * -1f;
 
-    public Vector2 SetStartPosition()
+    private Vector2 SetStartPosition()
     {
         float x = Random.Range(halfScreenSize * -1f, halfScreenSize);
-        return new (x, spawnYPos);
+        return new(x, spawnYPos);
+    }
+
+    public void SetForcePowerByTaps(int taps)
+    {
+        switch (taps)
+        {
+            case 3:
+                baseForcePower = new Vector2(14f, 16f);
+                break;
+            case 4:
+                baseForcePower = new Vector2(15f, 16f);
+                break;
+        }
     }
 }

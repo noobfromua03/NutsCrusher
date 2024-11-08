@@ -8,6 +8,7 @@ public class ObjectPool
 
     private int counter = 0;
     private const int MIN_OBJECTS_AMOUNT = 30;
+    public int MinObjects { get => MIN_OBJECTS_AMOUNT; }
     public ObjectData GetObjectByType(ObjectType type)
     {
 

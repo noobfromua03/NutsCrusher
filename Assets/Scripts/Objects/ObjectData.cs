@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ObjectData : MonoBehaviour
 {
@@ -22,6 +20,7 @@ public class ObjectData : MonoBehaviour
     private int totalTaps;
     private int currentTaps;
     private AudioType audioType;
+
     private void OnEnable()
     {
         SetColliderOrder();
@@ -37,6 +36,8 @@ public class ObjectData : MonoBehaviour
         currentTaps = totalTaps;
         audioType = data.AudioType;
         ChangeParticleSystemMaterial();
+        gameObject.GetComponent<ThrowedObject>().SetForcePowerByTaps(totalTaps);
+
     }
 
     public void OnTapHandler()

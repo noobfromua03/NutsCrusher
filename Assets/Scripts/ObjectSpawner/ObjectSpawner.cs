@@ -9,7 +9,7 @@ public class ObjectSpawner
     private GameObject objectPrefab;
     private Transform container;
     private bool StopSpawning;
-    private const int MAX_SPAWN_IN_ONE_WAVE= 3;
+    private const int MAX_SPAWN_IN_ONE_WAVE = 3;
 
     public Action DestroyActiveNuts;
     public void Initialize(Transform container)
@@ -42,21 +42,7 @@ public class ObjectSpawner
         for (int i = 0; i < Random.Range(0f, MAX_SPAWN_IN_ONE_WAVE); i++)
         {
             var type = ObjectConfig.Instance.GetRandomType();
-            switch (type)
-            {
-                case ObjectType.Nut:
-                    SpawnObject(ObjectType.Nut);
-                    break;
-                case ObjectType.Stone:
-                    SpawnObject(ObjectType.Stone);
-                    break;
-                case ObjectType.Bomb:
-                    SpawnObject(ObjectType.Bomb);
-                    break;
-                case ObjectType.GoldenNut:
-                    SpawnObject(ObjectType.GoldenNut);
-                    break;
-            }
+            SpawnObject(type);
         }
     }
 
@@ -78,6 +64,13 @@ public class ObjectSpawner
         for (int i = 0; i < allObjects.Count; i++)
         {
             var obj = SpawnObject(allObjects[i].Type);
+            obj.gameObject.SetActive(false);
+        }
+
+        for (int i = allObjects.Count; i < objectPool.MinObjects; i++)
+        {
+            var type = ObjectConfig.Instance.GetRandomType();
+            var obj = SpawnObject(type);
             obj.gameObject.SetActive(false);
         }
     }
